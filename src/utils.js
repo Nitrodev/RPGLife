@@ -59,3 +59,16 @@ function getTagType(tag) {
 function isVowel(letter) {
   return ['a', 'e', 'i', 'o', 'u'].includes(letter);
 }
+
+/** 
+ * What plural form should be used for a word?
+ */
+function getPluralForm(word) {
+  if (word.endsWith('y')) {
+    return word.slice(0, -1) + 'ies';
+  } else if (isVowel(word[word.length - 1])) {
+    return word + 's';
+  } else {
+    return word + 'es';
+  }
+}

@@ -17,17 +17,39 @@ class Action {
    * @returns {string} Returns an error message from actions errors, or null if the action can be executed.
    */
   canExecute(args) {
+    //console.log(args);
     
     if(args.length > 0) {
       // If the action needs arguments, then check if the given arguments
       // are valid.
       
-      for(let i = 0; i < args.length; i++) {
-        let arg = args[i];
-        let argData = this.arguments[i];
-        if(!argData.isValid(arg)) {
-          return arg + this.errors['invalid-argument'];
+      if(args.length == 1) {
+        // If the action only needs one argument, then check if the argument
+        // is valid.
+        if(!this.arguments[0].isValid(args[0])) {
+          return this.errors['invalid-argument'];
         }
+      } else {
+        // Either the action needs more than one argument, or the
+        // argument is two words. If the action needs more than one
+        // argument, then check if the given arguments are valid.
+        if(this.arguments.length > 1) {
+          if(!this.arguments.every((arg, index) => arg.isValid(args[index]))) {
+            return this.errors['invalid-argument'];
+          }
+        }
+
+        // If the argument is two or more words, then combine the two words into one.
+        // with a space in between.
+        if(this.arguments.length === 1) {
+          args[0] = args[0] + ' ' + args[1];
+
+          // Check if the combined argument is valid.
+          if(!this.arguments[0].isValid(args[0])) {
+            return this.errors['invalid-argument'];
+          }
+        }
+
       }
       
     } else if (args.length === 0 && this.conditions['needs-arguments']) {
@@ -71,7 +93,6 @@ const ArgumentTypes = {
       // If the value is an item name, then it is valid
       const place = player.location || world.getPlaceAt(player.position);
       const item = place.findItem(value) || player.findItem(value);
-      console.log(item);
       return item != null;
     }
   },

@@ -97,10 +97,11 @@ function updatePlayerInventory() {
   let inventory = document.createElement('span');
   inventory.innerHTML = player.inventory.map(item => {
     let tooltip = document.createElement('span');
-    tooltip.classList.add('tooltip');
-    tooltip.innerHTML = item.description;
+    tooltip.classList.add('tooltip-text');
+    tooltip.innerHTML = item.item.description;
     let itemEl = document.createElement('span');
-    itemEl.innerHTML = item.name;
+    itemEl.classList.add('tooltip');
+    itemEl.innerHTML = item.item.name;
     itemEl.appendChild(tooltip);
     return itemEl.outerHTML;
   }).join('<br>');
@@ -269,6 +270,7 @@ function executeAction(action, args) {
           // and don't do anything
         }
 
+        updatePlayerInventory();
         return `You take ${target}.`;
       }
     }

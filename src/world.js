@@ -80,22 +80,13 @@ class Place {
       // If the item is renewable, don't show the quantity.
       description += `\nYou see `;
       this.items.forEach((item, index) => {
-        const lastLetter = item.item.name.slice(-1);
         if(item.item.tags.includes('renewable')) {
-          if(isVowel(lastLetter)) {
-            description += `${item.item.name}s`;
-          } else {
-            description += `${item.item.name}es`;
-          }
+          description += `${getPluralForm(item.item.name)}`;
         } else {
           description += `${item.quantity} `;
 
           if(item.quantity > 1) {
-            if(isVowel(lastLetter)) {
-              description += `${item.item.name}s`;
-            } else {
-              description += `${item.item.name}es`;
-            }
+            description += `${getPluralForm(item.item.name)}`;
           } else {
             description += `${item.item.name}`;
           }
@@ -229,7 +220,7 @@ class Place {
         // Add random non-renewable items
         const randomItem = random(nonRenewableItems);
         // Make sure we don't add the same item twice.
-        if(!this.items.find(item => item.id === randomItem.id)) {
+        if(!this.items.find(item => item?.id === randomItem?.id)) {
           this.addItem(randomItem);
         }
         
