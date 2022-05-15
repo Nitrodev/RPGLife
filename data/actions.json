@@ -1,0 +1,118 @@
+[
+  {
+    "type": "search",
+    "conditions": {},
+    "verbs": [
+      "search", "look", "find"
+    ],
+    "arguments": [
+      {
+        "type": "string",
+        "optional": true
+      }
+    ],
+    "errors": {}
+  },
+  {
+    "type": "move",
+    "conditions": {
+      "needs-arguments": true
+    },
+    "verbs": [
+      "go", "move", "walk", "run", "travel"
+    ],
+    "arguments": [
+      {
+        "type": "direction",
+        "optional": false
+      }
+    ],
+    "errors": {
+      "missing-arguments": "You must specify a direction to move to.",
+      "invalid-argument": " is not a valid direction."
+    }
+  },
+  {
+    "type": "enter",
+    "conditions": {
+      "needs-arguments": true
+    },
+    "verbs": [
+      "enter"
+    ],
+    "arguments": [
+      {
+        "type": "place",
+        "optional": false
+      }
+    ],
+    "errors": {
+      "missing-arguments": "You must specify a place to enter.",
+      "invalid-argument": " is not a valid place."
+    }
+  },
+  {
+    "type": "exit",
+    "conditions": {},
+    "verbs": [
+      "exit", "leave"
+    ],
+    "arguments": [],
+    "errors": {}
+  },
+  {
+    "type": "take",
+    "conditions": {
+      "needs-arguments": true
+    },
+    "verbs": [
+      "take", "grab", "get"
+    ],
+    "arguments": [
+      {
+        "type": "item",
+        "optional": false
+      }
+    ],
+    "errors": {
+      "missing-arguments": "You must specify an item to take.",
+      "invalid-argument": " is not a valid item.",
+      "tool-required": "You need a tool to take that."
+    }
+  },
+  {
+    "type": "study",
+    "conditions": {},
+    "verbs": [
+      "study"
+    ],
+    "arguments": [
+      {
+        "type": "item",
+        "optional": false
+      }
+    ],
+    "errors": {
+      "missing-arguments": "You must specify an item to study.",
+      "invalid-argument": " is not a valid item."
+    }
+  },
+  {
+    "type": "craft",
+    "conditions": {},
+    "verbs": [
+      "craft", "make"
+    ],
+    "arguments": [
+      {
+        "type": "item",
+        "optional": false
+      }
+    ],
+    "errors": {
+      "missing-arguments": "You must specify an item to craft.",
+      "invalid-argument": " is not a valid item.",
+      "no-recipe": "You do not know how to craft that."
+    }
+  }
+]

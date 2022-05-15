@@ -1,0 +1,47 @@
+[
+  {
+    "id": "branch",
+    "weight": 1,
+    "biomes": ["forest"],
+    "description": "A branch of a tree.",
+    "variants": [],
+    "tags": ["wood", "renewable"]
+  },
+  {
+    "id": "rock",
+    "variants": [
+      {
+        "id": "small",
+        "weight": 1,
+        "biomes": ["forest", "grassland"],
+        "description": "A small rock.",
+        "tags": ["stone"]
+      },
+      {
+        "id": "medium",
+        "weight": 2,
+        "biomes": ["forest"],
+        "description": "A medium rock.",
+        "tags": ["stone"]
+      },
+      {
+        "id": "large",
+        "weight": 5,
+        "biomes": ["mountain"],
+        "description": "A large rock. You probably need a tool to break it.",
+        "tools": ["pickaxe"],
+        "tags": ["stone", "renewable"]
+      }
+    ]
+  },
+  {
+    "id": "tree",
+    "weight": 100,
+    "biomes": ["forest"],
+    "description": "A tree.",
+    "variants": [],
+    "tools": ["axe"],
+    "tags": ["wood", "renewable"]
+  }
+
+]

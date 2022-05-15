@@ -1,0 +1,106 @@
+/* DARK MODE */
+* {
+  color: #fff;
+  background-color: #000;
+}
+
+main {
+  display: flex;
+}
+
+hr {
+  margin: 1em 0 1em;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  height: fit-content;
+  width: fit-content;
+  padding: 0.5em;
+
+  border: 1px solid;
+}
+
+/* A log message of type info */ 
+.info {
+  padding: 2px;
+  margin: 0;
+}
+
+/* A log message of type error */
+.error {
+  padding: 2px;
+  margin: 0;
+
+  color: #f00;
+}
+
+.title {
+  font-size: 1em;
+  font-weight: bold;
+  text-decoration: underline;
+
+  /* Add a bottom and top margin to the title */ 
+  margin: 0.5em 0;
+  
+  text-align: center;
+}
+
+#gameLog {
+  display: flex;
+  flex-direction: column;
+
+  height: 30em;
+  width: 20em;
+  padding: 0.5em;
+  margin-bottom: 0.5em;
+  margin-right: 0;
+
+  border: 1px solid;
+
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#inputText {
+  width: 21em;
+}
+
+#playerStats {
+  list-style: none;
+}
+
+/* Tooltip */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip-text {
+  visibility: hidden;
+  width: fit-content;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -60px;
+
+  /* Fade in tooltip */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}

@@ -1,0 +1,28 @@
+[
+  {
+    "tools": [],
+    "ingredients": [
+      {
+        "item": "branch",
+        "amount": "1"
+      }
+    ],
+    "result": {
+      "item": "stick",
+      "amount": "1"
+    }
+  },
+  {
+    "tools": ["chisel"],
+    "ingredients": [
+      {
+        "item": "rock_medium",
+        "amount": "1"
+      }
+    ],
+    "result": {
+      "item": "rock_small",
+      "amount": "2"
+    }
+  }
+]
