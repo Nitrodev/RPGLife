@@ -23,6 +23,10 @@ hr {
   border: 1px solid;
 }
 
+main > .container:first-child {
+  max-height: 527px;
+}
+
 /* A log message of type info */ 
 .info {
   padding: 2px;

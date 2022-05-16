@@ -101,7 +101,7 @@ function updatePlayerInventory() {
     tooltip.innerHTML = item.item.description;
     let itemEl = document.createElement('span');
     itemEl.classList.add('tooltip');
-    itemEl.innerHTML = item.item.name;
+    itemEl.innerHTML = capitalize(item.item.name);
     itemEl.appendChild(tooltip);
     return itemEl.outerHTML;
   }).join('<br>');
@@ -258,7 +258,7 @@ function executeAction(action, args) {
 
       let item = place.findItem(target);
 
-      if(item) {
+      if(item && item.item.tools.length == 0) {
         // If the item is found, then add it to the player's inventory
         // and subtract it from the place if it has a quantity more than 1
         let quantity = 1;

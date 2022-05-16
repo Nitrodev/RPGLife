@@ -158,7 +158,8 @@ class Place {
       this.subplaces.push(place);
     }
   }
-
+ 
+  /** @returns {Object} Object with item and quantity */
   findItem(value) {
     // Check if the value is an item.
     let item = this.items.find(i => i.item === value);
