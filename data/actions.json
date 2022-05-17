@@ -7,7 +7,7 @@
     ],
     "arguments": [
       {
-        "type": "string",
+        "type": "direction",
         "optional": true
       }
     ],
@@ -29,7 +29,7 @@
     ],
     "errors": {
       "missing-arguments": "You must specify a direction to move to.",
-      "invalid-argument": " is not a valid direction."
+      "invalid-direction": " is not a valid direction."
     }
   },
   {
@@ -48,7 +48,7 @@
     ],
     "errors": {
       "missing-arguments": "You must specify a place to enter.",
-      "invalid-argument": " is not a valid place."
+      "invalid-place": " is not a valid place."
     }
   },
   {
@@ -70,14 +70,19 @@
     ],
     "arguments": [
       {
+        "type": "number",
+        "optional": true
+      },
+      {
         "type": "item",
         "optional": false
       }
     ],
     "errors": {
       "missing-arguments": "You must specify an item to take.",
-      "invalid-argument": " is not a valid item.",
-      "tool-required": "You need a tool to take that."
+      "invalid-number": " is not a number.",
+      "invalid-item": " is not a valid item.",
+      "tool-required": "You need a tool to do that."
     }
   },
   {
@@ -94,7 +99,7 @@
     ],
     "errors": {
       "missing-arguments": "You must specify an item to study.",
-      "invalid-argument": " is not a valid item."
+      "invalid-item": " is not a valid item."
     }
   },
   {
@@ -111,7 +116,7 @@
     ],
     "errors": {
       "missing-arguments": "You must specify an item to craft.",
-      "invalid-argument": " is not a valid item.",
+      "invalid-item": " is not a valid item.",
       "no-recipe": "You do not know how to craft that."
     }
   }

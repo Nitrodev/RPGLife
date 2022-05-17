@@ -20,22 +20,22 @@ class Action {
     //console.log(args);
     
     if(args.length > 0) {
-      // If the action needs arguments, then check if the given arguments
-      // are valid.
       
       if(args.length == 1) {
         // If the action only needs one argument, then check if the argument
         // is valid.
         if(!this.arguments[0].isValid(args[0])) {
-          return this.errors['invalid-argument'];
+          return args[0] + this.errors[`invalid-${this.arguments[0].type}`];
         }
       } else {
         // Either the action needs more than one argument, or the
         // argument is two words. If the action needs more than one
         // argument, then check if the given arguments are valid.
         if(this.arguments.length > 1) {
-          if(!this.arguments.every((arg, index) => arg.isValid(args[index]))) {
-            return this.errors['invalid-argument'];
+          for(let i = 0; i < this.arguments.length; i++) {
+            if(!this.arguments[i].isValid(args[i])) {
+              return args[0] + this.errors[`invalid-${this.arguments[i].type}`];
+            }
           }
         }
 
@@ -46,7 +46,7 @@ class Action {
 
           // Check if the combined argument is valid.
           if(!this.arguments[0].isValid(args[0])) {
-            return this.errors['invalid-argument'];
+            return args[0] + this.errors[`invalid-${this.arguments[0].type}`];
           }
         }
 
@@ -67,6 +67,11 @@ class Action {
 }
 
 const ArgumentTypes = {
+  "number": {
+    isValid(value) {
+      return !isNaN(value);
+    }
+  },
   "string": {
     isValid(value) {
       // If the value is a string, then it is valid

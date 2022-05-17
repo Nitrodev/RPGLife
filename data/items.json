@@ -42,6 +42,14 @@
     "variants": [],
     "tools": ["axe"],
     "tags": ["wood", "renewable"]
+  },
+  {
+    "id": "sand",
+    "weight": 1,
+    "biomes": ["desert"],
+    "description": "Sand.",
+    "variants": [],
+    "tags": ["renewable"]
   }
 
 ]

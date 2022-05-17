@@ -252,16 +252,18 @@ function executeAction(action, args) {
     }
 
     case 'take': {
-      let target = args[0];
+      let num = parseInt(args[0]);
+      let target = args[1];
 
       let place = player.location || world.getPlaceAt(player.position);
 
       let item = place.findItem(target);
 
-      if(item && item.item.tools.length == 0) {
+      // If the item is found and it doesn't require a tool, then take it
+      if(item && !item.tools) {
         // If the item is found, then add it to the player's inventory
         // and subtract it from the place if it has a quantity more than 1
-        let quantity = 1;
+        let quantity = num;
         player.take(item.item, quantity);
         if(item.quantity > 1) {
           item.quantity -= quantity;

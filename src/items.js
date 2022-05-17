@@ -9,7 +9,7 @@ class Item {
 
   get name() {
     // Get the name of the item from the localisation.
-    return localisation['en'][this.id];
+    return localisation['en'][this.id] || this.id;
   }
 
   static getItemsByBiome(biome) {

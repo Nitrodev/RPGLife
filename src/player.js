@@ -37,8 +37,18 @@ class Player {
     }
   }
 
+  /**
+   * Add an item to the player's inventory, or increase the quantity of an item
+   * @param {Item} item 
+   * @param {Number} quantity 
+   */
   take(item, quantity = 1) {
-    this.inventory.push({ item, quantity });
+    let foundItem = this.findItem(item.id);
+    if (foundItem) {
+      foundItem.quantity += quantity;
+    } else {
+      this.inventory.push({item, quantity});
+    }
   }
 
   /**
@@ -52,7 +62,7 @@ class Player {
   /**
    * Find an item in the player's inventory
    * @param {string} value The search value (name or id)
-   * @returns {Item} The item or null if not found
+   * @returns {Object} The {item, quantity} object or null if not found
    */
   findItem(value) {
     for (let item of this.inventory) {
