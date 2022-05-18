@@ -17,40 +17,65 @@ class Action {
    * @returns {string} Returns an error message from actions errors, or null if the action can be executed.
    */
   canExecute(args) {
-    //console.log(args);
+    console.log(args);
     
     if(args.length > 0) {
+      let required = this.arguments.filter(arg => arg.optional === false);
+      let optional = this.arguments.filter(arg => arg.optional === true);
       
-      if(args.length == 1) {
-        // If the action only needs one argument, then check if the argument
-        // is valid.
-        if(!this.arguments[0].isValid(args[0])) {
-          return args[0] + this.errors[`invalid-${this.arguments[0].type}`];
-        }
-      } else {
-        // Either the action needs more than one argument, or the
-        // argument is two words. If the action needs more than one
-        // argument, then check if the given arguments are valid.
-        if(this.arguments.length > 1) {
-          for(let i = 0; i < this.arguments.length; i++) {
-            if(!this.arguments[i].isValid(args[i])) {
-              return args[0] + this.errors[`invalid-${this.arguments[i].type}`];
-            }
+      if(args.length === required.length) {
+        // Check if only the required arguments are valid
+        for(let i = 0; i < required.length; i++) {
+          let arg = required[i];
+          let argValue = args[i];
+          if(!arg.isValid(argValue)) {
+            return argValue + this.errors[`invalid-${arg.type}`];
+          } else {
+            return null;
           }
         }
-
-        // If the argument is two or more words, then combine the two words into one.
-        // with a space in between.
-        if(this.arguments.length === 1) {
-          args[0] = args[0] + ' ' + args[1];
-
-          // Check if the combined argument is valid.
-          if(!this.arguments[0].isValid(args[0])) {
-            return args[0] + this.errors[`invalid-${this.arguments[0].type}`];
+      } else if(args.length === optional.length+required.length) {
+        // Check if all arguments are valid
+        for(let i = 0; i < this.arguments.length; i++) {
+          let arg = this.arguments[i];
+          let argValue = args[i];
+          if(!arg.isValid(argValue)) {
+            return argValue + this.errors[`invalid-${arg.type}`];
           }
         }
 
       }
+
+      // if(args.length == 1) {
+      //   // If the action only needs one argument, then check if the argument
+      //   // is valid.
+      //   if(!this.arguments[0].isValid(args[0])) {
+      //     return args[0] + this.errors[`invalid-${this.arguments[0].type}`];
+      //   }
+      // } else {
+      //   // Either the action needs more than one argument, or the
+      //   // argument is two words. If the action needs more than one
+      //   // argument, then check if the given arguments are valid.
+      //   if(this.arguments.length > 1) {
+      //     for(let i = 0; i < this.arguments.length; i++) {
+      //       if(!this.arguments[i].isValid(args[i])) {
+      //         return args[0] + this.errors[`invalid-${this.arguments[i].type}`];
+      //       }
+      //     }
+      //   }
+
+      //   // If the argument is two or more words, then combine the two words into one.
+      //   // with a space in between.
+      //   if(this.arguments.length === 1) {
+      //     args[0] = args[0] + ' ' + args[1];
+
+      //     // Check if the combined argument is valid.
+      //     if(!this.arguments[0].isValid(args[0])) {
+      //       return args[0] + this.errors[`invalid-${this.arguments[0].type}`];
+      //     }
+      //   }
+
+      // }
       
     } else if (args.length === 0 && this.conditions['needs-arguments']) {
       // If there are no arguments and the action needs arguments, 

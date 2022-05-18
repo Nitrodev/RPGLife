@@ -252,8 +252,8 @@ function executeAction(action, args) {
     }
 
     case 'take': {
-      let num = parseInt(args[0]);
-      let target = args[1];
+      let num = parseInt(args[0]) || 1;
+      let target = args[1] || args[0];
 
       let place = player.location || world.getPlaceAt(player.position);
 
